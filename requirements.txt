@@ -1,0 +1,12 @@
+psycopg[binary]>=3.2
+pgvector>=0.3
+numpy>=1.26
+redis>=5
+pydantic-ai-slim>=1.0
+openai-agents>=0.3
+llama-index-core>=0.12
+# dev
+pytest>=8
+fakeredis>=2.26
+# optional: real semantic embeddings (RECALL_EMBEDDER=sentence-transformers)
+# sentence-transformers>=3

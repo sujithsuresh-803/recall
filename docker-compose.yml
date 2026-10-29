@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_PASSWORD: recall
+    ports: ["5432:5432"]
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+# export RECALL_PG_DSN=postgresql://postgres:recall@127.0.0.1:5432/postgres
+# export RECALL_REDIS_URL=redis://127.0.0.1:6379/0

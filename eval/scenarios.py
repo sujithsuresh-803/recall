@@ -1,0 +1,83 @@
+"""Three businesses a marketing agent might serve. Memories are listed in the order they were learned; an entry
+marked stale was later replaced by one with the same subject. Facts deliberately overlap across businesses
+(each has a discount code, a tone, a budget, an audience) so a leak would be easy to hit."""
+
+SCENARIOS = {
+    "crumb": {   # a bakery
+        "memories": [
+            {"key": "tone_v1", "text": "Brand tone is formal and polite", "kind": "preference", "subject": "brand tone", "stale": True},
+            {"key": "audience", "text": "Audience is office workers near Indiranagar who buy breakfast", "subject": "audience"},
+            {"key": "hero", "text": "Hero products are the cardamom bun and the 48-hour sourdough", "subject": "hero products"},
+            {"key": "budget_v1", "text": "Monthly ad budget is 15,000 rupees", "subject": "ad budget", "stale": True},
+            {"key": "code", "text": "Discount code for the launch is CRUMB20", "subject": "discount code"},
+            {"key": "reels", "text": "Reels of bread coming out of the oven got the most saves last month", "kind": "episode"},
+            {"key": "never", "text": "Never use the word artisanal in any copy", "kind": "preference", "subject": "banned words"},
+            {"key": "tone_v2", "text": "Brand tone is now playful and cheeky, emoji are fine", "kind": "preference", "subject": "brand tone"},
+            {"key": "budget_v2", "text": "Monthly ad budget is now 25,000 rupees after Diwali", "subject": "ad budget"},
+            {"key": "hours", "text": "Shop opens at 7am and closes at 9pm every day", "subject": "opening hours"},
+            {"key": "priya_fmt", "text": "Priya wants every draft as three bullet points", "user": "priya", "kind": "preference", "subject": "draft format"},
+            {"key": "arjun_fmt", "text": "Arjun wants every draft as one short paragraph", "user": "arjun", "kind": "preference", "subject": "draft format"},
+        ],
+        "questions": [
+            {"q": "What tone should our captions use?", "expect": "tone_v2", "stale": ["tone_v1"]},
+            {"q": "How much can we spend on ads each month?", "expect": "budget_v2", "stale": ["budget_v1"]},
+            {"q": "Who is our audience?", "expect": "audience"},
+            {"q": "Which products should we feature?", "expect": "hero"},
+            {"q": "What is the launch discount code?", "expect": "code"},
+            {"q": "What kind of reels did well last month?", "expect": "reels"},
+            {"q": "Are there words we must never use in copy?", "expect": "never"},
+            {"q": "When does the shop open?", "expect": "hours"},
+            {"q": "How should I format the draft for me?", "user": "priya", "expect": "priya_fmt"},
+            {"q": "How should I format the draft for me?", "user": "arjun", "expect": "arjun_fmt"},
+        ],
+        "forget": {"key": "code", "q": "launch discount code"},
+    },
+    "ledger": {   # an accounting SaaS
+        "memories": [
+            {"key": "audience_v1", "text": "Audience is freelance designers who hate spreadsheets", "subject": "audience", "stale": True},
+            {"key": "tone", "text": "Brand tone is calm, plain English, no hype", "kind": "preference", "subject": "brand tone"},
+            {"key": "code", "text": "Discount code for the launch is LEDGER50 for the first year", "subject": "discount code"},
+            {"key": "budget", "text": "Monthly ad budget is 2,000 dollars, mostly LinkedIn", "subject": "ad budget"},
+            {"key": "competitor", "text": "Main competitor is Zoho Books; never name them in ads", "kind": "preference", "subject": "competitors"},
+            {"key": "webinar", "text": "The GST filing webinar in September brought 340 sign-ups", "kind": "episode"},
+            {"key": "audience_v2", "text": "Audience is now small accounting firms with 2 to 20 staff", "subject": "audience"},
+            {"key": "pricing", "text": "Pricing is 999 rupees per user per month, billed yearly", "subject": "pricing"},
+            {"key": "meera_len", "text": "Meera prefers LinkedIn posts under 120 words", "user": "meera", "kind": "preference", "subject": "post length"},
+        ],
+        "questions": [
+            {"q": "Who is our audience?", "expect": "audience_v2", "stale": ["audience_v1"]},
+            {"q": "What tone should our captions use?", "expect": "tone"},
+            {"q": "What is the launch discount code?", "expect": "code"},
+            {"q": "How much can we spend on ads each month?", "expect": "budget"},
+            {"q": "Can we mention our competitor in ads?", "expect": "competitor"},
+            {"q": "Which webinar brought the most sign-ups?", "expect": "webinar"},
+            {"q": "What is our pricing per user?", "expect": "pricing"},
+            {"q": "How long should my LinkedIn posts be?", "user": "meera", "expect": "meera_len"},
+        ],
+        "forget": {"key": "webinar", "q": "GST webinar sign-ups"},
+    },
+    "ironpeak": {   # a gym
+        "memories": [
+            {"key": "tone", "text": "Brand tone is energetic and motivating, short punchy lines", "kind": "preference", "subject": "brand tone"},
+            {"key": "offer_v1", "text": "Current offer is a free first week trial", "subject": "current offer", "stale": True},
+            {"key": "audience", "text": "Audience is first-time gym goers aged 25 to 40 in Koramangala", "subject": "audience"},
+            {"key": "code", "text": "Discount code for the launch is PEAK10 on annual plans", "subject": "discount code"},
+            {"key": "offer_v2", "text": "Current offer is 30% off the quarterly plan until December", "subject": "current offer"},
+            {"key": "trainer", "text": "Head trainer Kavya runs the 6am strength class", "subject": "head trainer"},
+            {"key": "fail", "text": "Before-and-after body photos got complaints, do not use them again", "kind": "episode"},
+            {"key": "budget", "text": "Monthly ad budget is 30,000 rupees on Instagram", "subject": "ad budget"},
+            {"key": "rohan_lang", "text": "Rohan wants captions written in Hinglish", "user": "rohan", "kind": "preference", "subject": "caption language"},
+        ],
+        "questions": [
+            {"q": "What is our current offer?", "expect": "offer_v2", "stale": ["offer_v1"]},
+            {"q": "What tone should our captions use?", "expect": "tone"},
+            {"q": "Who is our audience?", "expect": "audience"},
+            {"q": "What is the launch discount code?", "expect": "code"},
+            {"q": "Who runs the early morning strength class?", "expect": "trainer"},
+            {"q": "Which kind of photos should we avoid?", "expect": "fail"},
+            {"q": "How much can we spend on ads each month?", "expect": "budget"},
+            {"q": "What language should my captions be in?", "user": "rohan", "expect": "rohan_lang"},
+        ],
+        "forget": {"key": "trainer", "q": "head trainer strength class"},
+    },
+}

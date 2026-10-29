@@ -1,0 +1,12 @@
+{
+  "name": "recall-devdb",
+  "private": true,
+  "type": "module",
+  "description": "Local Postgres + pgvector via PGlite, for development without Docker",
+  "scripts": { "start": "node server.mjs" },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.13",
+    "@electric-sql/pglite-pgvector": "^0.0.14",
+    "@electric-sql/pglite-socket": "^0.2.16"
+  }
+}

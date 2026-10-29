@@ -1,0 +1,34 @@
+{
+  "recall": {
+    "questions": 26,
+    "recall_at_3": 0.885,
+    "stale_rate": 0.0,
+    "stale_questions": 4,
+    "cross_tenant_hits": 0,
+    "cross_user_hits": 0,
+    "rows_added_on_reingest": 0,
+    "forgotten_still_recalled": 0,
+    "recall_ms_p50": 4.9,
+    "misses": [
+      "crumb: How much can we spend on ads each month?",
+      "ledger: How much can we spend on ads each month?",
+      "ironpeak: How much can we spend on ads each month?"
+    ]
+  },
+  "naive_append_only": {
+    "questions": 26,
+    "recall_at_3": 0.885,
+    "stale_rate": 0.75,
+    "stale_questions": 4,
+    "cross_tenant_hits": 0,
+    "cross_user_hits": 0,
+    "rows_added_on_reingest": 26,
+    "forgotten_still_recalled": 0,
+    "recall_ms_p50": 3.0,
+    "misses": [
+      "crumb: How much can we spend on ads each month?",
+      "ledger: How much can we spend on ads each month?",
+      "ironpeak: How much can we spend on ads each month?"
+    ]
+  }
+}
